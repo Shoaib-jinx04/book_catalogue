@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Book Tracker</h1>
+        <a href="/books/add">Add New Book</a>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="?sort=title">Title</a></th>
+                    <th><a href="?sort=author">Author</a></th>
+                    <th><a href="?sort=rating">Rating</a></th>
+                    <th><a href="?sort=date_read">Date Read</a></th>
+                    <th>Notes</th>
+                    <th>Cover</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% books.forEach(book => { %>
+                <tr>
+                    <td><%= book.title %></td>
+                    <td><%= book.author %></td>
+                    <td><%= book.rating %></td>
+                    <td><%= book.date_read %></td>
+                    <td><%= book.notes %></td>
+                    <td><img src="<%= book.cover_url %>" alt="Cover" width="50"></td>
+                    <td>
+                        <a href="/books/edit/<%= book.id %>">Edit</a>
+                        <form action="/books/delete/<%= book.id %>" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
